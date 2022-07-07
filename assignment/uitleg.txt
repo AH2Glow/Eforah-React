@@ -1,0 +1,22 @@
+Opdracht:
+ - aanleveren via repo
+ - Afbeeldingen + JSON aanleveren met producten - titel afbeelding en inhoud knop
+
+Doelen:
+zelf opzetten React 
+
+Layout
+	-	gebruik css grid (geen css frameworks)
+	-	Geef zelf wat basale styling mee
+	-	Linker menu items hebben verder geen taak(toon rode menu alleen op desktop)
+	- 	toon op desktop 4 producten naast elkaar
+	-	toon op mobiel alle producten onder elkaar
+	
+- Werking:
+	- Als je op de bestel knop drukt telt het getal in de header met 1 op
+	- Als je op de teller klikt toont zich een nieuw scherm met de producten die je aangeklikt hebt - zie schermen
+
+	
+	
+Bonus
+	- Zoeken in producten werkend maken

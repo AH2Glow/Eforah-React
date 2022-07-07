@@ -1,0 +1,34 @@
+{
+    "products": [
+        {
+            "id": "id-1",
+            "name": "wild peaches",
+            "description": "Wild peaches are small, with a rounded base, roughly 3 to 4 centimeters in diameter. They have a thin, fuzzy, greenish-yellow skin that develops a subtle red blush once mature. The flesh is a light yellow with a slight red staining around the freestone pit in the center. Wild peaches offer a mildly sweet flavor that is more tart and acidic."
+        },
+        {
+            "id": "id-2",
+            "name": "sunflower seeds",
+            "description": "The sunflower seed is the seed of the sunflower (Helianthus annuus). There are three types of commonly used sunflower seeds: linoleic (most common), high oleic, and sunflower oil seeds. Each variety has its own unique levels of monounsaturated, saturated, and polyunsaturated fats. The information in this article refers mainly to the linoleic variety."
+        },
+        {
+            "id": "id-3",
+            "name": "sundried tomatoes",
+            "description": "Sun-dried tomatoes are ripe tomatoes that lose most of their water content after spending a majority of their drying time in the sun. These tomatoes are usually pre-treated with sulfur dioxide or salt before being placed in the sun in order to improve colour and appearance."
+        },
+        {
+            "id": "id-4",
+            "name": "atlantic salmon",
+            "description": "Atlantic salmon is seen as a delicacy by many consumers in the Netherlands. The Atlantic salmon sold in the supermarkets is always farmed and usually comes from either Norway or Scotland."
+        },
+        {
+            "id": "id-5",
+            "name": "organic lemons",
+            "description": "Organic lemons are easy to spot in your produce aisle. They are just like regular lemons, but they will usually have a few more scars on the outside of the lemon skin. Organic lemons are considered to be the world's finest lemon for juicing, organic lemons are sweeter than regular lemons, organic lemons peel easily, and above all, organic lemons are all natural."
+        },
+        {
+            "id": "id-6",
+            "name": "cottage cheese",
+            "description": "Also called Dutch cheese, or schmierkase, fresh, soft, unripened cheese consisting of curds of varying sizes, usually mixed with some whey or cream. It is white and mild but faintly sour in taste."
+        }
+    ]
+}
