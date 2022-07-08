@@ -19,32 +19,44 @@ type CartItem = {
 };
 
 export const App = () => {
-    const [productsInCart, setProductsInCart] = useState(Array<CartItem>);
+    const [productsInCart, setProductsInCart] = useState<CartItem[]>([]);
     const [searchInput, setSearchInput] = useState("");
 
-    const numberOfCartItems = productsInCart.reduce((acc, cur) => acc + cur.quantity, 0)
+    const numberOfCartItems = productsInCart.reduce(
+        (acc, cur) => acc + cur.quantity,
+        0
+    );
 
     const addProduct = (productId: string) => {
-        const product = data.products.find(p => p.id === productId);
+        const product = data.products.find((p) => p.id === productId);
 
         if (!product) return;
 
-        const productInCart = productsInCart.find(p => p.id === product.id);
+        const productInCart = productsInCart.find((p) => p.id === product.id);
 
         if (!productInCart) {
-            setProductsInCart(prev => prev.concat({ ...product, quantity: 1 }));
+            setProductsInCart((prev) =>
+                prev.concat({ ...product, quantity: 1 })
+            );
         } else {
-            const {id, quantity} = productInCart;
-            setProductsInCart(prev => prev.map(p => p.id === id ? { ...productInCart, quantity: quantity + 1 } : p))
+            const { id, quantity } = productInCart;
+            setProductsInCart((prev) =>
+                prev.map((p) =>
+                    p.id === id
+                        ? { ...productInCart, quantity: quantity + 1 }
+                        : p
+                )
+            );
         }
     };
 
     return (
         <StyledContainer>
-            <Header 
+            <Header
                 searchInput={searchInput}
                 setSearchInput={setSearchInput}
-                numberOfCartItems={numberOfCartItems} />
+                numberOfCartItems={numberOfCartItems}
+            />
             <Navigation />
 
             <Routes>
@@ -58,7 +70,10 @@ export const App = () => {
                         />
                     }
                 />
-                <Route path="shopping-cart" element={<ShoppingCart productsInCart={productsInCart} />} />
+                <Route
+                    path="shopping-cart"
+                    element={<ShoppingCart productsInCart={productsInCart} />}
+                />
             </Routes>
         </StyledContainer>
     );
@@ -72,4 +87,4 @@ const StyledContainer = styled.div`
     grid-gap: 1px;
     width: 100vw;
     height: 100vh;
-`
+`;
