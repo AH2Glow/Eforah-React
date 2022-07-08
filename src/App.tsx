@@ -22,26 +22,29 @@ export const App = () => {
     const [productsInCart, setProductsInCart] = useState(Array<CartItem>);
     const [searchInput, setSearchInput] = useState("");
 
+    const numberOfCartItems = productsInCart.reduce((acc, cur) => acc + cur.quantity, 0)
+
     const addProduct = (productId: string) => {
         const product = data.products.find(p => p.id === productId);
 
         if (!product) return;
 
-        const productInCart = productsInCart.find(productInCart => productInCart.id === product.id);
+        const productInCart = productsInCart.find(p => p.id === product.id);
 
         if (!productInCart) {
-            setProductsInCart(productsInCart.concat({ ...product, quantity: 1 }));
+            setProductsInCart(prev => prev.concat({ ...product, quantity: 1 }));
         } else {
-            const newProducts = productsInCart.map((p) => p.id === productInCart.id ? { ...productInCart, quantity: productInCart.quantity + 1 } : p
-            )
-
-            setProductsInCart(newProducts)
+            const {id, quantity} = productInCart;
+            setProductsInCart(prev => prev.map(p => p.id === id ? { ...productInCart, quantity: quantity + 1 } : p))
         }
     };
 
     return (
         <StyledContainer>
-            <Header searchInput={searchInput} setSearchInput={setSearchInput} numberOfCartItems={productsInCart.reduce((acc, cur) => acc + cur.quantity, 0)} />
+            <Header 
+                searchInput={searchInput}
+                setSearchInput={setSearchInput}
+                numberOfCartItems={numberOfCartItems} />
             <Navigation />
 
             <Routes>
