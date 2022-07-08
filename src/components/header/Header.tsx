@@ -1,29 +1,19 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { CartContext } from "../../contexts/StateContext";
 import { StyledLink } from "../../styled-components/navigation";
 import { ProductSearch } from "./ProductSearch";
 
-type PropTypes = {
-    numberOfCartItems: number;
-    searchInput: string;
-    setSearchInput: (input: string) => void;
-};
+export const Header = () => {
+    const { cartItems } = useContext(CartContext);
 
-export const Header = ({
-    numberOfCartItems,
-    searchInput,
-    setSearchInput,
-}: PropTypes) => {
     return (
         <StyledContainer>
             <h2>Market</h2>
-
-            <ProductSearch
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-            />
-
+            <ProductSearch />
             <StyledLink to="/shopping-cart">
-                {numberOfCartItems} items
+                {cartItems.reduce((acc, { quantity }) => acc + quantity, 0)}{" "}
+                items
             </StyledLink>
         </StyledContainer>
     );

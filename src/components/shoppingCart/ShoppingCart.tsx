@@ -1,24 +1,16 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { CartContext } from "../../contexts/StateContext";
 import { ShoppingItem } from "./ShoppingItem";
 
-type CartItem = {
-    id: string;
-    name: string;
-    description: string;
-    quantity: number;
-};
+export const ShoppingCart = () => {
+    const { cartItems } = useContext(CartContext);
 
-type Props = {
-    productsInCart: Array<CartItem>;
-};
-
-export const ShoppingCart = ({ productsInCart }: Props) => {
     return (
         <StyledContainer>
             <h1>Shopping Cart</h1>
-
             <ul>
-                {productsInCart.map((cartItem) => (
+                {cartItems.map((cartItem) => (
                     <ShoppingItem key={cartItem.id} item={cartItem} />
                 ))}
             </ul>

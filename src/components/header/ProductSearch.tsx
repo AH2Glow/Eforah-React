@@ -1,12 +1,11 @@
-type PropTypes = {
-    setSearchInput: (input: string) => void;
-    searchInput: string;
-};
+import { ChangeEvent, useContext } from "react";
+import { CartContext } from "../../contexts/StateContext";
 
-export const ProductSearch = ({ setSearchInput, searchInput }: PropTypes) => {
-    const onChange = (event: any) => {
+export const ProductSearch = () => {
+    const { searchInput, setSearchInput } = useContext(CartContext);
+
+    const onChange = (event: ChangeEvent<HTMLInputElement>) =>
         setSearchInput(event.target.value);
-    };
 
     return <input onChange={onChange} value={searchInput} />;
 };

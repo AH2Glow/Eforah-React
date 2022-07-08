@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
+import { CartContext } from "../../contexts/StateContext";
 import { StyledButton } from "../../styled-components/buttons";
 
 type Product = {
@@ -9,18 +10,18 @@ type Product = {
 };
 
 type PropTypes = {
-    addProduct: (productId: string) => void;
     product: Product;
 };
 
 export const ProductItem = ({
-    addProduct,
     product: { name, description, id },
 }: PropTypes) => {
     const [showDescription, setShowDescription] = useState(false);
 
-    const onClick = () => addProduct(id);
-    const toggleInfo = () => setShowDescription(!showDescription);
+    const { addItem } = useContext(CartContext);
+
+    const onClick = () => addItem(id);
+    const toggleInfo = () => setShowDescription((prev) => !prev);
 
     return (
         <StyledProductItem>

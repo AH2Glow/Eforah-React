@@ -1,5 +1,8 @@
 import { ProductItem } from "./ProductItem";
 import styled from "styled-components";
+import data from "../../products.json";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/StateContext";
 
 type Product = {
     id: string;
@@ -7,32 +10,19 @@ type Product = {
     description: string;
 };
 
-type PropTypes = {
-    products: Array<Product>;
-    addProduct: (productId: string) => void;
-    searchInput: string;
-};
+export const ProductList = () => {
+    const { searchInput } = useContext(CartContext);
 
-export const ProductsList = ({
-    products,
-    addProduct,
-    searchInput,
-}: PropTypes) => {
-    searchInput &&
-        (products = products.filter((product) =>
-            product.name.includes(searchInput)
-        ));
+    const products = searchInput
+        ? data.products.filter((product) => product.name.includes(searchInput))
+        : data.products;
 
     return (
         <StyledContainer>
             <h1>Products</h1>
             <StyledList>
                 {products.map((product: Product) => (
-                    <ProductItem
-                        product={product}
-                        key={product.id}
-                        addProduct={addProduct}
-                    />
+                    <ProductItem product={product} key={product.id} />
                 ))}
             </StyledList>
         </StyledContainer>

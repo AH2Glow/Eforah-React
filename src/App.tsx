@@ -4,78 +4,26 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import styled from "styled-components";
-import data from "./products.json";
 
 import { Header } from "./components/header/Header";
 import { Navigation } from "./components/navigation/Navigation";
-import { ProductsList } from "./components/productList/ProductList";
+import { ProductList } from "./components/productList/ProductList";
 import { ShoppingCart } from "./components/shoppingCart/ShoppingCart";
-
-type CartItem = {
-    id: string;
-    name: string;
-    description: string;
-    quantity: number;
-};
+import CartProvider from "./contexts/StateContext";
 
 export const App = () => {
-    const [productsInCart, setProductsInCart] = useState<CartItem[]>([]);
-    const [searchInput, setSearchInput] = useState("");
-
-    const numberOfCartItems = productsInCart.reduce(
-        (acc, cur) => acc + cur.quantity,
-        0
-    );
-
-    const addProduct = (productId: string) => {
-        const product = data.products.find((p) => p.id === productId);
-
-        if (!product) return;
-
-        const productInCart = productsInCart.find((p) => p.id === product.id);
-
-        if (!productInCart) {
-            setProductsInCart((prev) =>
-                prev.concat({ ...product, quantity: 1 })
-            );
-        } else {
-            const { id, quantity } = productInCart;
-            setProductsInCart((prev) =>
-                prev.map((p) =>
-                    p.id === id
-                        ? { ...productInCart, quantity: quantity + 1 }
-                        : p
-                )
-            );
-        }
-    };
-
     return (
-        <StyledContainer>
-            <Header
-                searchInput={searchInput}
-                setSearchInput={setSearchInput}
-                numberOfCartItems={numberOfCartItems}
-            />
-            <Navigation />
+        <CartProvider>
+            <StyledContainer>
+                <Header />
+                <Navigation />
 
-            <Routes>
-                <Route
-                    path="/"
-                    element={
-                        <ProductsList
-                            addProduct={addProduct}
-                            products={data.products}
-                            searchInput={searchInput}
-                        />
-                    }
-                />
-                <Route
-                    path="shopping-cart"
-                    element={<ShoppingCart productsInCart={productsInCart} />}
-                />
-            </Routes>
-        </StyledContainer>
+                <Routes>
+                    <Route path="/" element={<ProductList />} />
+                    <Route path="shopping-cart" element={<ShoppingCart />} />
+                </Routes>
+            </StyledContainer>
+        </CartProvider>
     );
 };
 
